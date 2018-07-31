@@ -9,9 +9,9 @@ import { Observable } from "../../../node_modules/rxjs";
   styleUrls: ["./navbar.component.css"]
 })
 export class NavbarComponent {
-  user: firebase.User;
+  user: Observable<firebase.User>;
   constructor(private afauth: AngularFireAuth) {
-    afauth.authState.subscribe(x => (this.user = x));
+    this.user = afauth.authState;
   }
 
   logout() {
